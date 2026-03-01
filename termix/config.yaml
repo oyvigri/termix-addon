@@ -8,10 +8,8 @@ arch:
 startup: application
 boot: auto
 init: false
-ports:
-  8089/tcp: 8089
-webui: "http://[HOST]:[PORT:8089]"
-ingress: false
+ingress: true
+ingress_port: 8089
 host_network: true
 options: {}
 schema: {}
