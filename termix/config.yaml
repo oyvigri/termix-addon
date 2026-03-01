@@ -1,0 +1,16 @@
+name: "Termix"
+version: "1.0.0"
+slug: "termix"
+description: "Web-based SSH client"
+arch:
+  - amd64
+  - aarch64
+startup: application
+boot: auto
+ports:
+  8089/tcp: 8089
+webui: "http://[HOST]:[PORT:8089]"
+ingress: false
+host_network: true
+options: {}
+schema: {}
