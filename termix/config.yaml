@@ -13,3 +13,4 @@ ingress_port: 8089
 host_network: true
 options: {}
 schema: {}
+webui: "http://[HOST]:[PORT:8089]"
