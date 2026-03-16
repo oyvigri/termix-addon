@@ -1,4 +1,6 @@
 #!/usr/bin/with-contenv bashio
-export DATA_DIR=/data
-export UPLOAD_DIR=/data/uploads
+
+rm -rf /app/data
+ln -s /data /app/data
+
 exec /entrypoint.sh
