@@ -2,12 +2,6 @@
 
 echo "=== TERMIX RUN.SH STARTED ==="
 
-mkdir -p /share/termix
-cp -R /share/termix/* /app/data/ 2>/dev/null || true
+export DATA_DIR=/data
 
-while true; do
-    cp -R /app/data/* /share/termix/ 2>/dev/null || true
-    sleep 30
-done &
-
-exec docker-entrypoint.sh /entrypoint.sh
+exec /entrypoint.sh

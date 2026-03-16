@@ -16,5 +16,4 @@ ports_description:
 webui: "http://[HOST]:[PORT:8089]"
 options: {}
 schema: {}
-map:
-  - share:rw
+
