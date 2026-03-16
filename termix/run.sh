@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "=== TERMIX RUN.SH STARTED ==="
+
 mkdir -p /share/termix
 cp -R /share/termix/* /app/data/ 2>/dev/null || true
 
