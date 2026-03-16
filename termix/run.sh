@@ -10,4 +10,4 @@ while true; do
     sleep 30
 done &
 
-exec /entrypoint.sh
+exec docker-entrypoint.sh /entrypoint.sh
