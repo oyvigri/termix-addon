@@ -2,9 +2,10 @@
 
 echo "=== TERMIX RUN.SH STARTED ==="
 
-# Replace /app/data with a symlink to HA's persistent /data directory
-# The upstream entrypoint hardcodes /app/data — symlink makes all paths resolve to /data
-rm -rf /app/data
-ln -s /data /app/data
+# The upstream image declares VOLUME ["/app/data"], so Docker mounts an anonymous
+# (ephemeral) volume there before this script runs — we cannot replace it with a symlink.
+# Instead, bind-mount HA's persistent /data directory over /app/data so all the
+# hardcoded /app/data paths in the upstream entrypoint resolve to persistent storage.
+mount --bind /data /app/data
 
 exec /entrypoint.sh
