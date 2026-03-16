@@ -1,18 +1,18 @@
-#!/usr/bin/with-contenv bashio
+#!/bin/sh
 
-# 1. Remove the temporary directories created by the image
-rm -rf /app/data
-rm -rf /app/uploads
+PERSISTENT_PATH="/share/termix"
 
-# 2. Create the sub-folders inside the persistent /data folder
-mkdir -p /data/uploads
+# Ensure persistent directories exist
+mkdir -p $PERSISTENT_PATH
 
-# 3. Create symbolic links
-# This forces the app to write to /data (persistent) instead of /app/data (temporary)
-ln -s /data /app/data
-ln -s /data/uploads /app/uploads
+# Restore data from persistent storage on startup
+cp -R $PERSISTENT_PATH/* /app/data/ 2>/dev/null || true
 
-echo "Symlinks created successfully."
+# Start continuous sync in background
+while true; do
+    cp -R /app/data/* $PERSISTENT_PATH/ 2>/dev/null || true
+    sleep 30
+done &
 
-# 4. Run the original entrypoint script
+# Start the app
 exec /entrypoint.sh
